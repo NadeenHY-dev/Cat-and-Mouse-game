@@ -19,5 +19,6 @@ private:
 	Board m_board;
 	//Menu m_menu;
 	Mouse m_mouse;
+	Cat m_cat;
 };
 
