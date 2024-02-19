@@ -10,9 +10,9 @@ public:
 	~Object();
 	
 	void createShape(const std::string name); // 
-	sf::Sprite getsprite(); // 
 
 	void setSprite(sf::Sprite);
+	sf::Sprite getsprite(); // 
 
 
 protected:

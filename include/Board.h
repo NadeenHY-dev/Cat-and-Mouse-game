@@ -23,6 +23,7 @@ public:
 
 	void readToFile(size_t i);
 
+	void setTexture(Mouse, Cat);
 	//void draw()
 
 
@@ -35,4 +36,9 @@ private:
 	size_t m_maxRow;
 	size_t m_maxCol;
 
+	Wall m_wall;
+	Door m_door;
+	Gift m_gift;
+	Cheese m_cheese;
+	Key m_key;
 };

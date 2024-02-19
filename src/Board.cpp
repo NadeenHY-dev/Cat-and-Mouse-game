@@ -44,6 +44,33 @@ void Board::readToFile(size_t i)
     myFile.close();
 }
 
+void Board::setTexture(Mouse mouse, Cat cat)
+{
+    sf::Texture texture;
+    sf::Sprite sprite;
+    texture.loadFromFile("mouse.png");
+    sprite.setTexture(texture);
+    mouse.setSprite(sprite);
+    texture.loadFromFile("cat.png");
+    sprite.setTexture(texture);
+    cat.setSprite(sprite);
+    texture.loadFromFile("door.png");
+    sprite.setTexture(texture);
+    m_door.setSprite(sprite);
+    texture.loadFromFile("wall.png");
+    sprite.setTexture(texture);
+    m_wall.setSprite(sprite);
+    texture.loadFromFile("key.png");
+    sprite.setTexture(texture);
+    m_key.setSprite(sprite);
+    texture.loadFromFile("cheese.png");
+    sprite.setTexture(texture);
+    m_cheese.setSprite(sprite);
+    texture.loadFromFile("gift.png");
+    sprite.setTexture(texture);
+    m_gift.setSprite(sprite);
+}
+
 void Board::insertIcon(const char c,size_t i ,size_t j)
 {
     switch (c)
