@@ -1,23 +1,16 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include<string>
-#include"Icons.h"
 
-
-class Object // wall , cheeses .... 
-{
+class Object {
 public:
-	Object();
-	~Object();
-	
-	//void createShape(const std::string name); // 
+    Object(sf::Texture& texture) : m_sprite(texture) {}
+    virtual ~Object() {}
 
-	void setSprite(sf::Sprite);
-	sf::Sprite getsprite(); // 
-
+    virtual void render(sf::RenderWindow& window) {
+        window.draw(m_sprite);
+    }
 
 protected:
-	sf::Sprite m_sprite;
+    sf::Sprite m_sprite;
 };
-

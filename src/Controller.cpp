@@ -20,6 +20,7 @@ void Controller::Run()
         while (window.isOpen())
         {
             window.clear();
+            m_board.render(m_window);
             window.display();
 
             for (auto event = sf::Event{}; window.pollEvent(event); )

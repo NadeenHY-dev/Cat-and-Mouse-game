@@ -2,12 +2,7 @@
 
 #include"StaticObject.h"
 
-class Cheese : public StaticObject
-{
+class Cheese : public StaticObject {
 public:
-	Cheese() { m_sprite = Icons::instance().sprite_cheese(); }
-	~Cheese() { ; }
-
-private:
-	
+    Cheese(sf::Texture& texture) : StaticObject(texture) {  }
 };

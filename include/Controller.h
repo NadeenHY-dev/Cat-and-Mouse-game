@@ -16,9 +16,10 @@ public:
 	void Run();
 
 private:
-	Board m_board;
-	//Menu m_menu;
-	Mouse m_mouse;
-	Cat m_cat;
+    sf::RenderWindow m_window;
+    Board m_board;
+
+
+
 };
 

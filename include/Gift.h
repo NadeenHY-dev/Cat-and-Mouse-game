@@ -2,12 +2,7 @@
 
 #include"StaticObject.h"
 
-class Gift : public StaticObject
-{
+class Gift : public StaticObject {
 public:
-	Gift() { m_sprite = Icons::instance().sprite_gift(); }
-	~Gift() { ; }
-
-private:
-
+    Gift(sf::Texture& texture) : StaticObject(texture) {}
 };

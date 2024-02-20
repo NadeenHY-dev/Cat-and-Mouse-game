@@ -1,13 +1,9 @@
 #pragma once
 
-#include"Object.h"
+#include <SFML/Graphics.hpp>
+#include "Object.h"
 
-class StaticObject : public Object
-{
+class StaticObject : public Object {
 public:
-	StaticObject() { ;}
-	~StaticObject() { ; }
-
-private:
+    StaticObject(sf::Texture& texture) : Object(texture) {}
 };
-
