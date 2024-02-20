@@ -5,7 +5,7 @@
 class Cheese : public StaticObject
 {
 public:
-	Cheese() { createShape("cheese.png"); }
+	Cheese() { m_sprite = Icons::instance().sprite_cheese(); }
 	~Cheese() { ; }
 
 private:

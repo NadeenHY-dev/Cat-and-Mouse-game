@@ -5,7 +5,7 @@
 class Cat : public MovingObject
 {
 public:
-	Cat() { createShape("cat.png"); }
+	Cat() { m_sprite = Icons::instance().sprite_cat(); }
 	~Cat() { ; }
 
 private:

@@ -5,7 +5,7 @@
 class Key : public StaticObject
 {
 public:
-	Key() { createShape("key.png"); }
+	Key() { m_sprite = Icons::instance().sprite_key(); }
 	~Key() { ; }
 
 private:
