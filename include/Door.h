@@ -2,6 +2,8 @@
 
 #include"StaticObject.h"
 
+
+
 class Door : public StaticObject
 {
 public:

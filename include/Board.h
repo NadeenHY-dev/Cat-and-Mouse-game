@@ -7,15 +7,10 @@
 #include<memory>
 
 
-
-//#include<Object.h>
-#include<Mouse.h>
-#include<Cat.h>
-#include<Wall.h>
-#include<Door.h>
-#include<Gift.h>
-#include<Key.h>
-#include<Cheese.h>
+class Object;
+//#include"Object.h"
+//#include"Mouse.h"
+//#include"Cat.h"
 
 
 

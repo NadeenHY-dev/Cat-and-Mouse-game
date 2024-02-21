@@ -4,6 +4,8 @@
 #include"Menu.h"
 #include <SFML/Graphics.hpp>
 #include"Consts.h"
+#include "Cat.h"
+#include "Mouse.h"
 
 
 

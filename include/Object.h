@@ -1,8 +1,10 @@
 #pragma once
 
+#include"Icons.h"
 #include <SFML/Graphics.hpp>
 #include<string>
-#include"Icons.h"
+
+
 
 
 class Object // wall , cheeses .... 
@@ -10,7 +12,7 @@ class Object // wall , cheeses ....
 public:
 	Object();
 	~Object();
-	
+	virtual void draw() = 0;
 	//void createShape(const std::string name); // 
 
 	void setSprite(sf::Sprite);
