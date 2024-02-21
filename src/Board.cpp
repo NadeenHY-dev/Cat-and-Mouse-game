@@ -28,7 +28,6 @@ void Board::readToFile(size_t i)
     size_t row, col;
     myFile >> row >> col;
     m_board.resize(row);
-   // m_board.resize(row, std::vector<std::unique_ptr<StaticObject>>(col, nullptr));
     char c;
     for (size_t i = 0; i < row; i++) {
         m_board.at(i).resize(col);  // we have to check
