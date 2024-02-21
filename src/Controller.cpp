@@ -11,9 +11,9 @@ Controller::~Controller()
 
 void Controller::Run()
 {
-	auto window = sf::RenderWindow(sf::VideoMode(800,800),"nadeen");
+	auto window = sf::RenderWindow(sf::VideoMode(800,800),"mouse cat");
     sf::Clock clock;
-    size_t i = 0;
+    size_t i = 1;
     while (i < LEVELS) {
         m_board.readToFile(i); // pushback chars ;
 

@@ -23,8 +23,6 @@ public:
 
 	void readToFile(size_t i);
 
-	//void draw()
-
 
 private:
 	void insertIcon(const char, size_t,size_t); // private
