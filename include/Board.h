@@ -1,18 +1,18 @@
 #pragma once
 
-#include<vector>
-#include<Object.h>
-#include<fstream>
 #include<iostream>
-#include<string>
-#include"Mouse.h"
-#include"Cat.h"
-#include"Wall.h"
-#include"Door.h"
-#include"Gift.h"
-#include"Key.h"
-#include"Cheese.h"
+#include<fstream>
+
+#include<vector>
 #include<memory>
+
+
+class Object;
+//#include"Object.h"
+//#include"Mouse.h"
+//#include"Cat.h"
+
+
 
 
 class Board
@@ -23,7 +23,6 @@ public:
 
 	void readToFile(size_t i);
 
-	void setTexture(Mouse, Cat);
 	//void draw()
 
 
@@ -32,13 +31,7 @@ private:
 
 
 	std::vector<std::vector<std::unique_ptr<Object> > > m_board; // V ?
-	//std::vector<std::string> m_board; // V ?
 	size_t m_maxRow;
 	size_t m_maxCol;
 
-	Wall m_wall;
-	Door m_door;
-	Gift m_gift;
-	Cheese m_cheese;
-	Key m_key;
 };

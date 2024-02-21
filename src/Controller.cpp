@@ -15,7 +15,6 @@ void Controller::Run()
     sf::Clock clock;
     size_t i = 0;
     while (i < LEVELS) {
-        m_board.setTexture(m_mouse, m_cat);
         m_board.readToFile(i); // pushback chars ;
 
         while (window.isOpen())

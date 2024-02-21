@@ -5,7 +5,7 @@
 class Wall : public StaticObject
 {
 public:
-	Wall() { createShape("Wall.png"); }
+	Wall() { m_sprite = Icons::instance().sprite_wall(); }
 	~Wall() { ; }
 
 private:

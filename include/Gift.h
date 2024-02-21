@@ -5,7 +5,7 @@
 class Gift : public StaticObject
 {
 public:
-	Gift() { createShape("gift.png"); }
+	Gift() { m_sprite = Icons::instance().sprite_gift(); }
 	~Gift() { ; }
 
 private:
