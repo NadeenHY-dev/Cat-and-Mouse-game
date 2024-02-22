@@ -7,6 +7,5 @@ public:
 	~Menu();
 
 private:
-
 };
 

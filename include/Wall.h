@@ -2,10 +2,14 @@
 
 #include"StaticObject.h"
 
+
 class Wall : public StaticObject
 {
 public:
-	Wall() { m_sprite = Icons::instance().sprite_wall(); }
+	Wall(sf::Vector2f v) {
+		m_sprite = Icons::instance().getIcon(WALL);
+		m_sprite.setPosition(v); // 
+	}
 	~Wall() { ; }
 
 private:

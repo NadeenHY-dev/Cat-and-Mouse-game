@@ -12,9 +12,9 @@ class Object // wall , cheeses ....
 public:
 	Object();
 	~Object();
-	virtual void draw() = 0;
-	//void createShape(const std::string name); // 
-
+	void draw(sf::RenderWindow& window) {
+		window.draw(m_sprite);
+	}
 	void setSprite(sf::Sprite);
 	sf::Sprite getsprite(); // 
 

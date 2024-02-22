@@ -2,32 +2,24 @@
 
 #include <SFML/Graphics.hpp>
 
+const int NUM_OF_ICONS = 8;
+enum tools
+{
+	MOUSE, CAT, CHEESE, DOOR, KEY, GIFT, WALL ,ROAD
+};
 
 class Icons  // singleton
 {
 public:
-	/*~Icons();*/
 	static Icons& instance();
 
-	sf::Sprite sprite_cat();
-	sf::Sprite sprite_mouse();
-	sf::Sprite sprite_wall();
-	sf::Sprite sprite_gift();
-	sf::Sprite sprite_key();
-	sf::Sprite sprite_cheese();
-	sf::Sprite sprite_door();
-
+	sf::Sprite getIcon(tools);
 
 private:
 	Icons();
 
-	sf::Texture m_mouse;
-	sf::Texture m_cat;
-	sf::Texture m_cheese;
-	sf::Texture m_wall;
-	sf::Texture m_key;
-	sf::Texture m_gift;
-	sf::Texture m_door;
-	//std::vector<sf::Texture> m_arr;
+	sf::Texture m_texture[NUM_OF_ICONS];
+	sf::Sprite m_sprite[NUM_OF_ICONS];
+	std::string m_nameFiles[NUM_OF_ICONS];
 };
 

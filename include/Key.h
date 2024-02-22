@@ -5,7 +5,10 @@
 class Key : public StaticObject
 {
 public:
-	Key() { m_sprite = Icons::instance().sprite_key(); }
+	Key(sf::Vector2f v) { 
+		m_sprite = Icons::instance().getIcon(KEY);
+		m_sprite.setPosition(v);
+	}
 	~Key() { ; }
 
 private:
