@@ -1,5 +1,5 @@
 #include"Icons.h"
-const int SIZE = 60;
+const int SIZE = 70;
 
 Icons::Icons()
 {

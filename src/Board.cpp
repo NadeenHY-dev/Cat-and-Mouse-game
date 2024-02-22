@@ -20,14 +20,13 @@ void Board::readToFile(size_t level)
     }
     myFile >> m_maxRow >> m_maxCol;
     m_board.resize(m_maxRow);
-
+    
     char c;
     for (size_t i = 0; i < m_maxRow; i++) {
         myFile.get();
         m_board.at(i).resize(m_maxCol);  // we have to check
         for (size_t j = 0; j < m_maxCol; j++) {
             c = static_cast<char>(myFile.get());
-            //myFile >> c;
             insertIcon(c,i,j);
         }
     }
@@ -39,7 +38,8 @@ void Board::printer(sf::RenderWindow& window)
 {
     for (size_t i = 0; i < m_maxRow; i++) {
         for (size_t j = 0; j < m_maxCol; j++) {
-            m_board.at(i).at(j)->draw(window);
+            if (m_board.at(i).at(j) != nullptr) 
+                m_board.at(i).at(j)->draw(window);
         }
     }
 }
@@ -75,9 +75,6 @@ void Board::insertIcon(const char c,size_t i ,size_t j)
         break;
     case 'D':
         m_board.at(i).at(j) = std::make_unique<Door>(sf::Vector2f(j * SIZE, i * SIZE));
-        break;
-    case 'R':
-        m_board.at(i).at(j) = std::make_unique<Road>(sf::Vector2f(j * SIZE, i * SIZE));
         break;
     default:
         break;

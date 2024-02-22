@@ -10,8 +10,8 @@ public:
 		m_sprite.setPosition(v);
 	}
 	~Mouse() { ; }
-
-	 void move();
+	void setDirection(sf::Keyboard::Key key);
+	 void move(sf::Time deltatime);
 private:
 
 };
