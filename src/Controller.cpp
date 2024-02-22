@@ -22,7 +22,6 @@ void Controller::Run()
         {
             window.clear();
             m_board.printer(window);
-            window.display();
 
             for (auto event = sf::Event{}; window.pollEvent(event); )
             {
@@ -31,12 +30,17 @@ void Controller::Run()
                 case sf::Event::Closed:
                     window.close();
                     break;
-                case sf::Event::KeyPressed: // m_player.setDirection(event.key.code);
+                case sf::Event::KeyPressed: 
+                    m_mouse.setDirection(event.key.code);
                     break;
                 }
             }
+            const auto deltaTime = clock.restart();
+            m_mouse.move(deltaTime);
+            window.display();
         }
     }
 }
+
 
 

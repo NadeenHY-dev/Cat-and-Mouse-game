@@ -11,7 +11,7 @@ public:
 	virtual void move() { ; } // V 
 
 
-private:
+protected:
 	sf::Vector2f m_direction; // right -> (1,0) ; left->(-1,0) ;
 };
 
