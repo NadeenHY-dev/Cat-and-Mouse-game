@@ -1,7 +1,8 @@
 #include"Controller.h"
 
 
-Controller::Controller()
+Controller::Controller() 
+    : m_mouse(sf::Vector2f(0,0)), m_cat(sf::Vector2f(0,0))
 {
 }
 
@@ -20,6 +21,7 @@ void Controller::Run()
         while (window.isOpen())
         {
             window.clear();
+            m_board.printer(window);
             window.display();
 
             for (auto event = sf::Event{}; window.pollEvent(event); )
@@ -36,3 +38,5 @@ void Controller::Run()
         }
     }
 }
+
+

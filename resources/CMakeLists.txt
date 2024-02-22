@@ -7,5 +7,7 @@ configure_file ("gift.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("key.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("mouse.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("wall.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("road.png" ${CMAKE_BINARY_DIR} COPYONLY)
+
 
 

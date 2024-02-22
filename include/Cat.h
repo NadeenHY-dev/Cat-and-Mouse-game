@@ -5,7 +5,10 @@
 class Cat : public MovingObject
 {
 public:
-	Cat() { /*m_sprite = Icons::instance().sprite_cat();*/ }
+	Cat(sf::Vector2f v) {
+		m_sprite = Icons::instance().getIcon(CAT);
+		m_sprite.setPosition(v);
+	}
 	~Cat() { ; }
 
 private:

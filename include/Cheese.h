@@ -5,7 +5,10 @@
 class Cheese : public StaticObject
 {
 public:
-	Cheese() { m_sprite = Icons::instance().sprite_cheese(); }
+	Cheese(sf::Vector2f v) { 
+		m_sprite = Icons::instance().getIcon(CHEESE);
+		m_sprite.setPosition(v);
+	}
 	~Cheese() { ; }
 
 private:

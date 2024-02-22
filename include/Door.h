@@ -7,7 +7,10 @@
 class Door : public StaticObject
 {
 public:
-	Door() { m_sprite = Icons::instance().sprite_door(); }
+	Door(sf::Vector2f v) { 
+		m_sprite = Icons::instance().getIcon(DOOR);
+		m_sprite.setPosition(v);
+	}
 	~Door() { ; }
 
 private:

@@ -9,7 +9,6 @@ public:
 	~MovingObject() { ; } // V
 
 	virtual void move() { ; } // V 
-	virtual void draw(){}
 
 
 private:

@@ -5,7 +5,10 @@
 class Gift : public StaticObject
 {
 public:
-	Gift() { m_sprite = Icons::instance().sprite_gift(); }
+	Gift(sf::Vector2f v) { 
+		m_sprite = Icons::instance().getIcon(GIFT);
+		m_sprite.setPosition(v);
+	}
 	~Gift() { ; }
 
 private:

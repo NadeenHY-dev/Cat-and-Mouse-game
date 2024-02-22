@@ -5,7 +5,10 @@
 class Mouse : public MovingObject
 {
 public:
-	Mouse() { /*m_sprite = Icons::instance().sprite_mouse();*/ }
+	Mouse(sf::Vector2f v) { 
+		m_sprite = Icons::instance().getIcon(MOUSE);
+		m_sprite.setPosition(v);
+	}
 	~Mouse() { ; }
 
 	 void move();
