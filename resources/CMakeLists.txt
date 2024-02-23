@@ -7,6 +7,9 @@ configure_file ("gift.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("key.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("mouse.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("wall.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("Levels.txt" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("level2.txt" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("Level3.txt" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("road.png" ${CMAKE_BINARY_DIR} COPYONLY)
 
 

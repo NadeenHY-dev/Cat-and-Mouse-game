@@ -24,6 +24,8 @@ void Mouse::setDirection(sf::Keyboard::Key key)
 	}
 }
 
+
+//we have to check on what the mouse has stepped on and then chande the position
 void Mouse::move(sf::Time deltatime)
 {
 	const auto speedPerSecond = 20.f;

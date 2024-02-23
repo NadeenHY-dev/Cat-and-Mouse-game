@@ -2,7 +2,7 @@
 
 
 
-Board::Board() : m_maxCol(0) , m_maxRow(0)
+Board::Board() : m_maxCol(0), m_maxRow(0)
 {
 }
 
@@ -10,23 +10,25 @@ Board::~Board()
 {
 }
 
-void Board::readToFile(size_t level, Mouse& mouse, std::vector<Cat>& cat)
+
+void Board::readToFile(const std::string level_name, Mouse& mouse, std::vector<Cat>& cat)
 {
-    std::string filename = "Level" + std::to_string(level) + ".txt";
-    auto myFile = std::ifstream(filename);
+    //std::string filename = "Level" + std::to_string(level) + ".txt";
+    auto myFile = std::ifstream( level_name);
     if (!myFile.is_open()) {
         std::cerr << "The file cannot open \n";
         exit(EXIT_FAILURE);
     }
     myFile >> m_maxRow >> m_maxCol;
     m_board.resize(m_maxRow);
-    
+
     char c;
     for (size_t i = 0; i < m_maxRow; i++) {
         myFile.get();
         m_board.at(i).resize(m_maxCol);  // we have to check
         for (size_t j = 0; j < m_maxCol; j++) {
             c = static_cast<char>(myFile.get());
+
             insertIcon(c,i,j,mouse ,cat);
         }
     }
@@ -38,7 +40,7 @@ void Board::printer(sf::RenderWindow& window)
 {
     for (size_t i = 0; i < m_maxRow; i++) {
         for (size_t j = 0; j < m_maxCol; j++) {
-            if (m_board.at(i).at(j) != nullptr) 
+            if (m_board.at(i).at(j) != nullptr)
                 m_board.at(i).at(j)->draw(window);
         }
     }
@@ -50,6 +52,7 @@ void Board::printer(sf::RenderWindow& window)
 //#*F**#
 //#*$%^#
 //######
+
 
 void Board::insertIcon(const char c,size_t i ,size_t j, Mouse& mouse, std::vector<Cat>& cat)
 {
@@ -80,4 +83,3 @@ void Board::insertIcon(const char c,size_t i ,size_t j, Mouse& mouse, std::vecto
         break;
     }
 }
-
