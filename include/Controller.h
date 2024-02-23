@@ -6,7 +6,8 @@
 #include"Consts.h"
 #include "Cat.h"
 #include "Mouse.h"
-
+#include <string>
+//# include <fstream>
 
 
 class Controller

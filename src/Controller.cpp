@@ -1,8 +1,8 @@
 #include"Controller.h"
 
 
-Controller::Controller() 
-    : m_mouse(sf::Vector2f(0,0)), m_cat(sf::Vector2f(0,0))
+Controller::Controller()
+    : m_mouse(sf::Vector2f(0, 0)), m_cat(sf::Vector2f(0, 0))
 {
 }
 
@@ -12,11 +12,22 @@ Controller::~Controller()
 
 void Controller::Run()
 {
-	auto window = sf::RenderWindow(sf::VideoMode(800,800),"mouse cat");
+    auto window = sf::RenderWindow(sf::VideoMode(800, 800), "mouse cat");
     sf::Clock clock;
-    size_t i = 1;
-    while (i < LEVELS) {
-        m_board.readToFile(i); // pushback chars ;
+    std::ifstream file("Levels.txt");
+
+    // Check if the file is opened successfully
+    if (!file.is_open()) {
+        std::cerr << "Unable to open file Levels.txt" << std::endl;
+    }
+
+    std::string level_name;
+
+    // Read the file line by line
+    while (std::getline(file, level_name)) {
+        // Process the level name here
+        std::cout << level_name << std::endl;
+        m_board.readToFile(level_name);
 
         while (window.isOpen())
         {
@@ -30,7 +41,7 @@ void Controller::Run()
                 case sf::Event::Closed:
                     window.close();
                     break;
-                case sf::Event::KeyPressed: 
+                case sf::Event::KeyPressed:
                     m_mouse.setDirection(event.key.code);
                     break;
                 }
@@ -41,6 +52,3 @@ void Controller::Run()
         }
     }
 }
-
-
-
