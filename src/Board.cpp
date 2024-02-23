@@ -10,7 +10,8 @@ Board::~Board()
 {
 }
 
-void Board::readToFile(const std::string level_name)
+
+void Board::readToFile(const std::string level_name, Mouse& mouse, std::vector<Cat>& cat)
 {
     //std::string filename = "Level" + std::to_string(level) + ".txt";
     auto myFile = std::ifstream( level_name);
@@ -27,7 +28,8 @@ void Board::readToFile(const std::string level_name)
         m_board.at(i).resize(m_maxCol);  // we have to check
         for (size_t j = 0; j < m_maxCol; j++) {
             c = static_cast<char>(myFile.get());
-            insertIcon(c, i, j);
+
+            insertIcon(c,i,j,mouse ,cat);
         }
     }
     myFile.seekg(0, std::ios::beg);
@@ -51,7 +53,8 @@ void Board::printer(sf::RenderWindow& window)
 //#*$%^#
 //######
 
-void Board::insertIcon(const char c, size_t i, size_t j)
+
+void Board::insertIcon(const char c,size_t i ,size_t j, Mouse& mouse, std::vector<Cat>& cat)
 {
     switch (c)
     {
@@ -59,7 +62,7 @@ void Board::insertIcon(const char c, size_t i, size_t j)
         m_board.at(i).at(j) = std::make_unique<Wall>(sf::Vector2f(j * SIZE, i * SIZE));
         break;
     case '%':
-        m_board.at(i).at(j) = std::make_unique<Mouse>(sf::Vector2f(j * SIZE, i * SIZE));// ?
+        mouse.setPosition(sf::Vector2f(j * SIZE, i * SIZE));
         break;
     case '$':
         m_board.at(i).at(j) = std::make_unique<Gift>(sf::Vector2f(j * SIZE, i * SIZE));

@@ -1,8 +1,9 @@
 #include"Controller.h"
 
 
-Controller::Controller()
-    : m_mouse(sf::Vector2f(0, 0)), m_cat(sf::Vector2f(0, 0))
+
+Controller::Controller() 
+    : m_mouse(sf::Vector2f(0,0)), m_cat({sf::Vector2f(0,0), sf::Vector2f(0, 0), sf::Vector2f(0, 0)})
 {
 }
 
@@ -27,12 +28,14 @@ void Controller::Run()
     while (std::getline(file, level_name)) {
         // Process the level name here
         std::cout << level_name << std::endl;
-        m_board.readToFile(level_name);
+        m_board.readToFile(level_name,m_mouse,m_cat);
+
 
         while (window.isOpen())
         {
             window.clear();
             m_board.printer(window);
+            m_mouse.draw(window);
 
             for (auto event = sf::Event{}; window.pollEvent(event); )
             {
