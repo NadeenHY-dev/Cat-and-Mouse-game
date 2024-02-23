@@ -11,7 +11,7 @@ public:
 	}
 	~Mouse() { ; }
 	void setDirection(sf::Keyboard::Key key);
-	 void move(sf::Time deltatime);
+	void move(sf::Time deltatime);
 private:
 
 };

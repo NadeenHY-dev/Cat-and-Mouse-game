@@ -2,7 +2,7 @@
 
 
 Controller::Controller() 
-    : m_mouse(sf::Vector2f(0,0)), m_cat(sf::Vector2f(0,0))
+    : m_mouse(sf::Vector2f(0,0)), m_cat({sf::Vector2f(0,0), sf::Vector2f(0, 0), sf::Vector2f(0, 0)})
 {
 }
 
@@ -16,12 +16,13 @@ void Controller::Run()
     sf::Clock clock;
     size_t i = 1;
     while (i < LEVELS) {
-        m_board.readToFile(i); // pushback chars ;
+        m_board.readToFile(i,m_mouse,m_cat); // pushback chars ;
 
         while (window.isOpen())
         {
             window.clear();
             m_board.printer(window);
+            m_mouse.draw(window);
 
             for (auto event = sf::Event{}; window.pollEvent(event); )
             {
