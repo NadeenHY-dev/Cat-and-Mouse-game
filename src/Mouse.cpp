@@ -26,10 +26,15 @@ void Mouse::setDirection(sf::Keyboard::Key key)
 
 
 //we have to check on what the mouse has stepped on and then chande the position
-void Mouse::move(sf::Time deltatime)
+//void Mouse::move(sf::Time deltatime)
+//{
+//	const auto speedPerSecond = 20.f;
+//	m_sprite.move(m_direction * speedPerSecond * deltatime.asSeconds());
+//}
+
+sf::Vector2f Mouse::getMousePosition()
 {
-	const auto speedPerSecond = 20.f;
-	m_sprite.move(m_direction * speedPerSecond * deltatime.asSeconds());
+	return m_sprite.getPosition();
 }
 
 

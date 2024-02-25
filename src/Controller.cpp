@@ -3,7 +3,7 @@
 
 
 Controller::Controller() 
-    : m_mouse(sf::Vector2f(0,0))/*, m_cat({sf::Vector2f(0,0), sf::Vector2f(0, 0), sf::Vector2f(0, 0)}*///)
+    : m_mouse(sf::Vector2f(0,0))/*, m_cat({sf::Vector2f(0,0), sf::Vector2f(0, 0), sf::Vector2f(0, 0)})*/
 {
 }
 
@@ -16,7 +16,6 @@ void Controller::Run()
     auto window = sf::RenderWindow(sf::VideoMode(800, 800), "mouse cat");
     sf::Clock clock;
 
-
     if(setLevel())
     {
         m_board.readToFile(m_level,m_mouse, m_cat);
@@ -26,6 +25,9 @@ void Controller::Run()
             window.clear();
             m_board.printer(window);
             m_mouse.draw(window);
+            for (size_t i = 0; i < m_cat.size(); i++) {
+                m_cat.at(i)->draw(window);
+            }
 
             for (auto event = sf::Event{}; window.pollEvent(event); )
             {
@@ -39,14 +41,15 @@ void Controller::Run()
                     break;
                 }
             }
-            const auto deltaTime = clock.restart();
-            m_mouse.move(deltaTime);
-            for (auto& cat : m_cat) {
-                const auto deltaTime = clock.restart();
-                cat->move(deltaTime); // Polymorphic call to the appropriate move method
-                cat->draw(window);
-                window.display();
+            for (size_t i = 0; i < m_cat.size(); i++) {
+                m_cat.at(i)->SetDirection(m_mouse.getMousePosition());
             }
+            const auto deltaTime = clock.restart();
+            m_mouse.move(deltaTime);    
+            for (size_t i = 0; i < m_cat.size(); i++) {
+                m_cat.at(i)->move(deltaTime);
+            }
+            window.display();
         }
     }
 }
@@ -70,18 +73,18 @@ bool Controller::setLevel()
     return false;
 }
 
-void Controller::loadCats() {
-    // Example positions for illustration
-    std::vector<sf::Vector2f> positions = { sf::Vector2f(100, 100), sf::Vector2f(200, 200) };
-    bool isSmart = false;
-
-    for (auto& pos : positions) {
-        if (isSmart) {
-            m_cat.emplace_back(std::make_unique<SmartCat>(pos));
-        }
-        else {
-            m_cat.emplace_back(std::make_unique<NormalCat>(pos));
-        }
-        isSmart = !isSmart; // Toggle between normal and smart
-    }
-}
+//void Controller::loadCats() {
+//    // Example positions for illustration
+//    std::vector<sf::Vector2f> positions = { sf::Vector2f(100, 100), sf::Vector2f(200, 200) };
+//    bool isSmart = false;
+//
+//    for (auto& pos : positions) {
+//        if (isSmart) {
+//            m_cat.emplace_back(std::make_unique<SmartCat>(pos));
+//        }
+//        else {
+//            m_cat.emplace_back(std::make_unique<NormalCat>(pos));
+//        }
+//        isSmart = !isSmart; // Toggle between normal and smart
+//    }
+//}

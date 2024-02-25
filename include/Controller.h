@@ -5,8 +5,6 @@
 #include <SFML/Graphics.hpp>
 #include"Consts.h"
 #include "Cat.h"
-#include "SmartCat.h" // Include SmartCat header
-#include "NormalCat.h" // Include NormalCat header
 #include "Mouse.h"
 #include <string>
 //# include <fstream>
