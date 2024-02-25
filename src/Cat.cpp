@@ -11,13 +11,13 @@ void Cat::SetDirection(sf::Vector2f MousePlace)
 	double minDistance = std::min(std::min(Up, Down), std::min(Right, Left));
 
 	if (Up == minDistance)
-		m_direction = { CatPosition.x ,CatPosition.y - 1 };
+		m_direction = { 0 ,- 1 };
 	else if (Down == minDistance)
-		m_direction = { CatPosition.x ,CatPosition.y + 1 };
+		m_direction = { 0 , 1 };
 	else if (Right == minDistance)
-		m_direction = { CatPosition.x + 1,CatPosition.y };
+		m_direction = { 1, 0 };
 	else
-		m_direction = { CatPosition.x - 1,CatPosition.y };
+		m_direction = { - 1, 0 };
 }
 
 double Cat::distance(sf::Vector2f p1, sf::Vector2f p2)
