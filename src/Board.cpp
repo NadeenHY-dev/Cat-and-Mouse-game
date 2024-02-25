@@ -11,7 +11,7 @@ Board::~Board()
 }
 
 
-void Board::readToFile(const std::string level_name, Mouse& mouse, std::vector<Cat>& cat)
+void Board::readToFile(const std::string level_name, Mouse& mouse, std::vector<std::unique_ptr<Cat>>& cat)
 {
     //std::string filename = "Level" + std::to_string(level) + ".txt";
     auto myFile = std::ifstream( level_name);
@@ -29,7 +29,7 @@ void Board::readToFile(const std::string level_name, Mouse& mouse, std::vector<C
         for (size_t j = 0; j < m_maxCol; j++) {
             c = static_cast<char>(myFile.get());
 
-            insertIcon(c,i,j,mouse ,cat);
+            insertIcon(c,i,j,mouse , cat);
         }
     }
     myFile.seekg(0, std::ios::beg);
@@ -54,7 +54,7 @@ void Board::printer(sf::RenderWindow& window)
 //######
 
 
-void Board::insertIcon(const char c,size_t i ,size_t j, Mouse& mouse, std::vector<Cat>& cat)
+void Board::insertIcon(const char c,size_t i ,size_t j, Mouse& mouse, std::vector<std::unique_ptr<Cat>>& cat)
 {
     switch (c)
     {
@@ -63,6 +63,7 @@ void Board::insertIcon(const char c,size_t i ,size_t j, Mouse& mouse, std::vecto
         break;
     case '%':
         mouse.setPosition(sf::Vector2f(j * SIZE, i * SIZE));
+        
         break;
     case '$':
         m_board.at(i).at(j) = std::make_unique<Gift>(sf::Vector2f(j * SIZE, i * SIZE));
@@ -71,7 +72,9 @@ void Board::insertIcon(const char c,size_t i ,size_t j, Mouse& mouse, std::vecto
         m_board.at(i).at(j) = std::make_unique<Key>(sf::Vector2f(j * SIZE, i * SIZE));
         break;
     case '^':
-        m_board.at(i).at(j) = std::make_unique<Cat>(sf::Vector2f(j * SIZE, i * SIZE));// ?
+        //m_board.at(i).at(j) = std::make_unique<Cat>(sf::Vector2f(j * SIZE, i * SIZE));// ?
+        cat.push_back(std::make_unique<Cat>(sf::Vector2f(j * SIZE, i * SIZE)));
+        // {Cat,Cat,Cat}
         break;
     case '*':
         m_board.at(i).at(j) = std::make_unique<Cheese>(sf::Vector2f(j * SIZE, i * SIZE));

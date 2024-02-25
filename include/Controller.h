@@ -19,9 +19,13 @@ public:
 	void Run();
 
 private:
+	bool setLevel();
+	void loadCats();
+	std::string m_level;
 	Board m_board;
 	//Menu m_menu;
 	Mouse m_mouse;
-	std::vector<Cat> m_cat;
-};
+	std::vector<std::unique_ptr<Cat>> m_cat;
 
+
+};

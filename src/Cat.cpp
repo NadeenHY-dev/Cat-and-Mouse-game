@@ -1,0 +1,26 @@
+#include "Cat.h"
+
+void Cat::SetDirection(sf::Vector2f MousePlace)
+{
+	sf::Vector2f CatPosition = m_sprite.getPosition();
+	double Up = distance({ CatPosition.x ,CatPosition.y - 1}, MousePlace);
+	double Down = distance({ CatPosition.x ,CatPosition.y + 1 }, MousePlace);
+	double Right = distance({ CatPosition.x + 1,CatPosition.y }, MousePlace);
+	double Left = distance({ CatPosition.x - 1,CatPosition.y }, MousePlace);
+
+	double minDistance = std::min(std::min(Up, Down), std::min(Right, Left));
+
+	if (Up == minDistance)
+		m_direction = { CatPosition.x ,CatPosition.y - 1 };
+	else if (Down == minDistance)
+		m_direction = { CatPosition.x ,CatPosition.y + 1 };
+	else if (Right == minDistance)
+		m_direction = { CatPosition.x + 1,CatPosition.y };
+	else
+		m_direction = { CatPosition.x - 1,CatPosition.y };
+}
+
+double Cat::distance(sf::Vector2f p1, sf::Vector2f p2)
+{
+	return sqrt(pow(p1.y - p2.y, 2) + pow(p1.x - p2.x, 2));
+}

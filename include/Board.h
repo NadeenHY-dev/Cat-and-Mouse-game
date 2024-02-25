@@ -11,11 +11,13 @@
 #include"Door.h"
 #include"Gift.h"
 #include"Key.h"
+
 #include"Cheese.h"
 class Object;
 //#include"Object.h"
 #include"Mouse.h"
 #include"Cat.h"
+
 //#include <fstream>
 
 const int SIZE = 60;
@@ -27,11 +29,11 @@ public:
 	~Board();
 
 
-	void readToFile(const std::string level_name,Mouse& mouse,std::vector<Cat>& cat);
+	void readToFile(const std::string level_name,Mouse& mouse, std::vector<std::unique_ptr<Cat>>& cat);
 	void printer(sf::RenderWindow& window);
 
 private:
-	void insertIcon(const char, size_t,size_t, Mouse& mouse, std::vector<Cat>& cat); // private
+	void insertIcon(const char, size_t,size_t, Mouse& mouse, std::vector<std::unique_ptr<Cat>>& cat); // private
 
 
 	std::vector<std::vector<std::unique_ptr<Object> > > m_board; // V ?
