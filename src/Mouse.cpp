@@ -37,4 +37,37 @@ sf::Vector2f Mouse::getMousePosition()
 	return m_sprite.getPosition();
 }
 
+void Mouse::collide(Object& obj)
+{
+	obj.collide(*this);
+}
+
+void Mouse::collide(Mouse&)
+{
+}
+
+void Mouse::collide(Cat&)
+{
+}
+
+void Mouse::collide(Cheese&)
+{
+}
+
+void Mouse::collide(Wall&)
+{
+}
+
+void Mouse::collide(Gift&)
+{
+}
+
+void Mouse::collide(Door&)
+{
+}
+
+void Mouse::collide(Key&)
+{
+}
+
 

@@ -20,6 +20,39 @@ void Cat::SetDirection(sf::Vector2f MousePlace)
 		m_direction = { - 1, 0 };
 }
 
+void Cat::collide(Object& obj)
+{
+	obj.collide(*this);
+}
+
+void Cat::collide(Mouse&)
+{
+}
+
+void Cat::collide(Cat&)
+{
+}
+
+void Cat::collide(Cheese&)
+{
+}
+
+void Cat::collide(Wall&)
+{
+}
+
+void Cat::collide(Gift&)
+{
+}
+
+void Cat::collide(Door&)
+{
+} 
+
+void Cat::collide(Key&)
+{
+}
+
 double Cat::distance(sf::Vector2f p1, sf::Vector2f p2)
 {
 	return sqrt(pow(p1.y - p2.y, 2) + pow(p1.x - p2.x, 2));
