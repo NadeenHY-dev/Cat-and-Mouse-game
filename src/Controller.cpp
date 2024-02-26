@@ -29,7 +29,7 @@ void Controller::Run()
     {
         bool gameRunning = true; //to track if the game is still running  //its false when it is done either winning or lost
 
-        m_board.readToFile(m_level, m_mouse, m_cat);
+        m_board.readToFile(m_level, m_mouse, m_cat,m_staticObjects);
 
         while (window.isOpen())
         {
@@ -63,7 +63,10 @@ void Controller::Run()
                 for (size_t i = 0; i < m_cat.size(); i++) {
                     m_cat.at(i)->SetDirection(m_mouse.getMousePosition());
                 }
-
+                handleCollesion(m_mouse);
+                for (size_t i = 0; i < m_cat.size(); i++) {
+                    handleCollesion(*m_cat.at(i));
+                }
                 const auto deltaTime = clock.restart();
                 m_mouse.move(deltaTime);
                 for (size_t i = 0; i < m_cat.size(); i++) {
@@ -74,12 +77,26 @@ void Controller::Run()
         }
     }
 }
+// i have to pushpach the moveable objects...
+void Controller::handleCollesion(Object& obj)
+{
+    for (auto& unmoveable : m_staticObjects) {
+        if (obj.collidesWith(*unmoveable)) {
+            obj.collide(*unmoveable);
+        }
+    }
+    for (auto& moveable : m_movingObjects) {
+        if (obj.collidesWith(*moveable)) {
+            obj.collide(*moveable);
+        }
+    }
+}
 
 void Controller::resetGame() {
 
-    // Reset the level to its initial state
-    if (setLevel()) {
-        m_board.readToFile(m_level, m_mouse, m_cat); // Re-initialize the level entities
+    // Reset the level to its initial state 
+    if (setLevel()) { // ahmad :: check if the adding of the m_staticObject is not editing any thing else ...(26/2/2024)
+        m_board.readToFile(m_level, m_mouse, m_cat,m_staticObjects); // Re-initialize the level entities
     }
 
     m_mouse.setPosition(m_mouse.getFirstPos());

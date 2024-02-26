@@ -8,7 +8,7 @@
 #include "Cat.h"
 #include "Mouse.h"
 #include <string>
-# include <iostream>
+#include <iostream>
 
 
 class Controller
@@ -19,7 +19,13 @@ public:
 	void displayHelp(sf::RenderWindow& window);
 	void Run();
 
+
 private:
+	void handleCollesion(Object&);
+	std::vector<std::unique_ptr<MovingObject>> m_movingObjects;
+	std::vector<std::unique_ptr<StaticObject>> m_staticObjects;
+
+
 	void resetGame();
 	bool setLevel();
 	void dealWithMenu( bool&gameRunning,sf:: RenderWindow&window);

@@ -42,7 +42,7 @@ void Mouse::collide(Object& obj)
 	obj.collide(*this);
 }
 
-void Mouse::collide(Mouse&)
+void Mouse::collide(Mouse&)// maybe we have to remove it 
 {
 }
 
