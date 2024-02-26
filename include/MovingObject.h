@@ -15,7 +15,9 @@ public:
 	}
 	//virtual void move() { ; } // V 
 
-
+	sf::Vector2f getFirstPos() {
+		return m_firstPosition;
+	}
 
 	void move(sf::Time deltaTime) {
 		const auto speedPerSecond = 20.f;
