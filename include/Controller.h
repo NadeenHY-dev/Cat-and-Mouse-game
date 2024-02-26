@@ -1,4 +1,5 @@
 #pragma once
+#include <SFML/Audio.hpp>
 
 #include"Board.h"
 #include"Menu.h"
@@ -7,7 +8,7 @@
 #include "Cat.h"
 #include "Mouse.h"
 #include <string>
-//# include <fstream>
+# include <iostream>
 
 
 class Controller
@@ -28,6 +29,5 @@ private:
 	Menu m_menu;
 	Mouse m_mouse;
 	std::vector<std::unique_ptr<Cat>> m_cat;
-
-
+	bool gameRunning = false;
 };

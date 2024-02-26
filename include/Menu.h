@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include <functional>
-
+#include <iostream>
 class Menu {
 public:
     Menu(float width, float height);
@@ -15,4 +15,5 @@ public:
 private:
     std::vector<sf::Text> menuTexts;
     sf::Font font;
+
 };

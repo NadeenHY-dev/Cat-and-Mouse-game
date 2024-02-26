@@ -2,17 +2,24 @@
 
 Menu::Menu(float width, float height)
 {
-    if (!font.loadFromFile("arial.png")) {
-        // Handle error
+    if (!font.loadFromFile("arial.ttf")) {
+        std::cerr << "faild loading";
+
     }
 
-    std::string menuItems[] = { "New Game", "Help", "Exit" };
+    std::string menuItems[] = { "Play", "Help", "Exit" };
     for (int i = 0; i < 3; ++i) {
-        sf::Text text(menuItems[i], font, 24);
-        text.setPosition(sf::Vector2f(width / 2, height / (4) * (i + 1)));
-        text.setFillColor(sf::Color::White);
-        menuTexts.push_back(text);
+        for (int i = 0; i < 3; ++i) {
+            sf::Text text(menuItems[i], font, 24);
+            // Center the text horizontally and vertically
+            sf::FloatRect textBounds = text.getLocalBounds();
+            text.setOrigin(textBounds.width / 2, textBounds.height / 2);
+            text.setPosition(sf::Vector2f(width / 2, height / 4 * (i + 1)));
+            text.setFillColor(sf::Color::White);
+            menuTexts.push_back(text);
+        }
     }
+
 }
 
 void Menu::draw(sf::RenderWindow& window)
