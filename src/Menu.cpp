@@ -2,6 +2,20 @@
 
 Menu::Menu(float width, float height)
 {
+
+    // Load the texture for the background photo
+    if (!backgroundTexture.loadFromFile("jungle.jpg")) {
+        std::cerr << "Failed to load background image\n";
+    }
+
+    // Set the texture for the background sprite
+    backgroundSprite.setTexture(backgroundTexture);
+
+    // Scale the background sprite to cover the entire window
+    float scaleX = width / backgroundSprite.getLocalBounds().width;
+    float scaleY = height / backgroundSprite.getLocalBounds().height;
+    backgroundSprite.setScale(scaleX, scaleY);
+
     if (!font.loadFromFile("arial.ttf")) {
         std::cerr << "faild loading";
 
@@ -24,6 +38,8 @@ Menu::Menu(float width, float height)
 
 void Menu::draw(sf::RenderWindow& window)
 {
+    window.draw(backgroundSprite);
+
     for (auto& text : menuTexts) {
         window.draw(text);
     }

@@ -20,7 +20,7 @@ public:
 	}
 
 	void move(sf::Time deltaTime) {
-		const auto speedPerSecond = 20.f;
+		const auto speedPerSecond = 50.f;
 		m_sprite.move(m_direction * speedPerSecond * deltaTime.asSeconds());
 	}
 

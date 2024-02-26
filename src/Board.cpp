@@ -86,3 +86,8 @@ void Board::insertIcon(const char c,size_t i ,size_t j, Mouse& mouse, std::vecto
         break;
     }
 }
+
+bool Board::notInRange(sf::Vector2f position) const {
+    return position.x >= 0 && position.x < (m_maxCol-1) * SIZE  &&
+        position.y >= 0 && position.y < (m_maxRow-1) * SIZE ;
+}

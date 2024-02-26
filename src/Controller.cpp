@@ -65,9 +65,21 @@ void Controller::Run()
                 }
 
                 const auto deltaTime = clock.restart();
+                sf::Vector2f tempMousepPos = m_mouse.getMousePosition();
                 m_mouse.move(deltaTime);
+                // Check if the new position of the mouse is within the board's boundaries
+                if (!m_board.notInRange(m_mouse.getMousePosition())) {
+                    // If not, prevent the mouse from moving
+                    m_mouse.setPosition(tempMousepPos);
+                }
+
                 for (size_t i = 0; i < m_cat.size(); i++) {
+                    sf::Vector2f tempCatPos = m_cat.at(i)->getCatPosition();
                     m_cat.at(i)->move(deltaTime);
+                    if (!m_board.notInRange(m_cat.at(i)->getCatPosition())) {
+                        // If not, prevent the cat from moving
+                        m_cat.at(i)->setPosition(tempCatPos);
+                    }
                 }
                 window.display();
             }
@@ -165,7 +177,7 @@ void Controller::displayHelp(sf::RenderWindow& window) {
     "- Remember, each level presents a new challenge, so stay \n focused and plan your moves wisely.\n\n"
     "- Press any key on the board to return to the main menu.");
 
-    window.clear();
+    window.clear(); 
     window.draw(helpText);
     window.display();
 
