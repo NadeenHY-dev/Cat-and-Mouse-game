@@ -6,7 +6,7 @@ Icons::Icons()
 	
 	m_texture[CAT].loadFromFile("cat.png");
 	m_texture[MOUSE].loadFromFile("mouse.png"); 
-	m_texture[DOOR].loadFromFile("door.png");
+	m_texture[DOOR].loadFromFile("door.png"); 
 	m_texture[WALL].loadFromFile("bush.png");
 	m_texture[CHEESE].loadFromFile("cheese.png");
 	m_texture[KEY].loadFromFile("key.png");

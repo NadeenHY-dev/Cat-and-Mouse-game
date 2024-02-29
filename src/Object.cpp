@@ -8,6 +8,11 @@ Object::~Object()
 {
 }
 
+bool Object::collidesWith(Object& obj)
+{
+	return m_sprite.getGlobalBounds().intersects(obj.m_sprite.getGlobalBounds());
+}
+
 //void Object::createShape(const std::string name)
 //{
 //	sf::Texture texture;
