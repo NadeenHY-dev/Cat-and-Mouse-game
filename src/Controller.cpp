@@ -26,10 +26,10 @@ void Controller::Run()
         dealWithMenu(gameRunning, window);
 
     if (setLevel())
-    {
+    {    // we can to make it a member of the class !!!
         bool gameRunning = true; //to track if the game is still running  //its false when it is done either winning or lost
 
-        m_board.readToFile(m_level, m_mouse, m_cat);
+        m_board.readToFile(m_level, m_mouse, m_cat,m_staticObjects);
 
         while (window.isOpen())
         {
@@ -37,7 +37,7 @@ void Controller::Run()
             //gameRunning = false;       // if win or lose
             if (!gameRunning)
                 dealWithMenu(gameRunning, window);
-            else {
+             else {
                 //print
                 window.clear();
                 m_board.printer(window);
@@ -55,14 +55,14 @@ void Controller::Run()
                         window.close();
                         break;
                     case sf::Event::KeyPressed:
-                        m_mouse.setDirection(event.key.code);
+                        m_mouse.setDirection(event.key.code); // set direction of the mouse 
                         break;
                     }
                 }
 
-                for (size_t i = 0; i < m_cat.size(); i++) {
+                for (size_t i = 0; i < m_cat.size(); i++) //  set the direction of the cats 
                     m_cat.at(i)->SetDirection(m_mouse.getMousePosition());
-                }
+
 
                 const auto deltaTime = clock.restart();
                 sf::Vector2f tempMousepPos = m_mouse.getMousePosition();
@@ -81,17 +81,47 @@ void Controller::Run()
                         m_cat.at(i)->setPosition(tempCatPos);
                     }
                 }
+                
+                m_mouse.setdeltaTime(deltaTime);
+                // check collesions 
+                for (auto& unmoveable : m_staticObjects) { // mouse wall 
+                    if (m_mouse.collidesWith(*unmoveable)) { // thier checking the sprite !!
+                        m_mouse.collide(*unmoveable);
+                    }
+                }
                 window.display();
             }
         }
     }
 }
+// i have to pushpach the moveable objects...
+void Controller::handleCollesion(Object& obj) // insert mouse or cat 
+{
+    for (auto& unmoveable : m_staticObjects) {
+        if (obj.collidesWith(*unmoveable)) { // thier checking the sprite !!
+            obj.collide(*unmoveable);
+        }
+    }
+    //for (auto& moveable : m_movingObjects) {
+    //    if (obj.collidesWith(*moveable)) {
+    //        obj.collide(*moveable);
+    //    }
+    //}
+}
+
+void Controller::loadMoveableObj() // ahmad 
+{
+    m_movingObjects.push_back(std::make_unique<Mouse>(m_mouse)); // index i = 0 ;
+    for (int i = 0; i < m_cat.size(); i++) {
+        m_movingObjects.push_back(std::make_unique<Cat>(*m_cat.at(i)));
+    }
+}
 
 void Controller::resetGame() {
 
-    // Reset the level to its initial state
-    if (setLevel()) {
-        m_board.readToFile(m_level, m_mouse, m_cat); // Re-initialize the level entities
+    // Reset the level to its initial state 
+    if (setLevel()) { // ahmad :: check if the adding of the m_staticObject is not editing any thing else ...(26/2/2024)
+        m_board.readToFile(m_level, m_mouse, m_cat,m_staticObjects); // Re-initialize the level entities
     }
 
     m_mouse.setPosition(m_mouse.getFirstPos());
