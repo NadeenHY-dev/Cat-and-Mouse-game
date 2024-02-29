@@ -14,8 +14,9 @@ public:
 
     void loadSound(const std::string& name, const std::string& filename);
     void playSound(const std::string& name);
-    void stopSound(const std::string& name);
-    void stopAllSounds();
+    //void stopSound(const std::string& name);
+    //void stopAllSounds();
+    //void loadSounds();
 
 private:
     std::map<std::string, sf::SoundBuffer> soundBuffers;

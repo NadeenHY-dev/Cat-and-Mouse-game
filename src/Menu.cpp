@@ -28,7 +28,6 @@ Menu::Menu(float width, float height)
 
     //// Set up the sound
     //clickSound.setBuffer(clickSoundBuffer);
-
     std::string menuItems[] = { "Play", "Help", "Exit" };
     for (int i = 0; i < 3; ++i) {
         for (int i = 0; i < 3; ++i) {
@@ -57,7 +56,8 @@ int Menu::getSelectedItem(const sf::Vector2f& mousePos)
     for (size_t i = 0; i < menuTexts.size(); ++i) {
         if (menuTexts[i].getGlobalBounds().contains(mousePos)) {
             // Play the click sound when a menu item is selected
-            //clickSound.play();
+            soundManager.loadSound("click", "menuclick.ogg");
+            soundManager.playSound("click");
             return i;
         }
     }

@@ -3,7 +3,7 @@
 SoundManager::SoundManager() {}
 
 SoundManager::~SoundManager() {
-    stopAllSounds();
+    /*stopAllSounds();*/
 }
 
 void SoundManager::loadSound(const std::string& name, const std::string& filename) {
@@ -26,22 +26,22 @@ void SoundManager::playSound(const std::string& name) {
     }
 }
 
-void SoundManager::stopSound(const std::string& name) {
-    auto found = sounds.find(name);
-    if (found != sounds.end()) {
-        found->second.stop();
-    }
-}
-
-void SoundManager::stopAllSounds() {
-    for (auto& sound : sounds) {
-        sound.second.stop();
-    }
-}
+//void SoundManager::stopSound(const std::string& name) {
+//    auto found = sounds.find(name);
+//    if (found != sounds.end()) {
+//        found->second.stop();
+//    }
+//}
+//
+//void SoundManager::stopAllSounds() {
+//    for (auto& sound : sounds) {
+//        sound.second.stop();
+//    }
+//}
 
 //void SoundManager::loadSounds() {
 //    // Load all the sounds you need for the game
-//    soundManager.loadSound("click", "menuclick.ogg");
-//    soundManager.loadSound("catMouse", "catmouse.ogg"); // Example: sound for cat-mouse interaction
+//    loadSound("click", "menuclick.ogg");
+//    loadSound("catMouse", "catmouse.ogg"); // Example: sound for cat-mouse interaction
 //    // Add more sounds as needed
 //}
