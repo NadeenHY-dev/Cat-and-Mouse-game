@@ -3,9 +3,9 @@
 
 
 Controller::Controller() 
-    : m_mouse(sf::Vector2f(0,0)) ,m_menu(800, 600)/*, m_cat({sf::Vector2f(0,0), sf::Vector2f(0, 0), sf::Vector2f(0, 0)})*/
+    : m_mouse(sf::Vector2f(0,0)) ,
+    m_menu(800, 600 )/*, m_cat({sf::Vector2f(0,0), sf::Vector2f(0, 0), sf::Vector2f(0, 0)})*/
 {
-
 }
 
 Controller::~Controller()
@@ -14,12 +14,12 @@ Controller::~Controller()
 
 void Controller::Run()
 {
-    //sf::Music music;
-    //if (!music.openFromFile("music.ogg"))
-    //    std::cout << "no music"; // error
-    //music.play();
+    sf::Music music;
+    if (!music.openFromFile("music.ogg"))
+        std::cout << "no music"; // error
+    music.play();
 
-    auto window = sf::RenderWindow(sf::VideoMode(800, 800), "mouse cat");
+    auto window = sf::RenderWindow(sf::VideoMode(800, 600), "mouse cat");
     sf::Clock clock;
 
     while (!gameRunning)
@@ -63,12 +63,23 @@ void Controller::Run()
                 for (size_t i = 0; i < m_cat.size(); i++) //  set the direction of the cats 
                     m_cat.at(i)->SetDirection(m_mouse.getMousePosition());
 
-                
-                const auto deltaTime = clock.restart(); // Time 
-                // moving the mouse and the cats 
-                m_mouse.move(deltaTime); // sprite set possition 
+
+                const auto deltaTime = clock.restart();
+                sf::Vector2f tempMousepPos = m_mouse.getMousePosition();
+                m_mouse.move(deltaTime);
+                // Check if the new position of the mouse is within the board's boundaries
+                if (!m_board.notInRange(m_mouse.getMousePosition())) {
+                    // If not, prevent the mouse from moving
+                    m_mouse.setPosition(tempMousepPos);
+                }
+
                 for (size_t i = 0; i < m_cat.size(); i++) {
+                    sf::Vector2f tempCatPos = m_cat.at(i)->getCatPosition();
                     m_cat.at(i)->move(deltaTime);
+                    if (!m_board.notInRange(m_cat.at(i)->getCatPosition())) {
+                        // If not, prevent the cat from moving
+                        m_cat.at(i)->setPosition(tempCatPos);
+                    }
                 }
                 
                 m_mouse.setdeltaTime(deltaTime);
@@ -196,7 +207,7 @@ void Controller::displayHelp(sf::RenderWindow& window) {
     "- Remember, each level presents a new challenge, so stay \n focused and plan your moves wisely.\n\n"
     "- Press any key on the board to return to the main menu.");
 
-    window.clear();
+    window.clear(); 
     window.draw(helpText);
     window.display();
 
@@ -210,3 +221,4 @@ void Controller::displayHelp(sf::RenderWindow& window) {
         }
     }
 }
+
