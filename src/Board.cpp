@@ -12,7 +12,8 @@ Board::~Board()
 }
 
 
-void Board::readToFile(const std::string level_name, Mouse& mouse, std::vector<std::unique_ptr<Cat>>& cat)
+void Board::readToFile(const std::string level_name, Mouse& mouse, std::vector<std::unique_ptr<Cat>>& cat
+                      ,std::vector<std::unique_ptr<StaticObject>>& staticObjects)
 {
     //std::string filename = "Level" + std::to_string(level) + ".txt";
     auto myFile = std::ifstream( level_name);
@@ -30,7 +31,7 @@ void Board::readToFile(const std::string level_name, Mouse& mouse, std::vector<s
         for (size_t j = 0; j < m_maxCol; j++) {
             c = static_cast<char>(myFile.get());
 
-            insertIcon(c,i,j,mouse , cat);
+            insertIcon(c,i,j,mouse , cat,staticObjects);
         }
     }
     myFile.seekg(0, std::ios::beg);
@@ -58,33 +59,36 @@ void Board::printer(sf::RenderWindow& window)
 //######
 
 
-void Board::insertIcon(const char c,size_t i ,size_t j, Mouse& mouse, std::vector<std::unique_ptr<Cat>>& cat)
+void Board::insertIcon(const char c,size_t i ,size_t j, Mouse& mouse, std::vector<std::unique_ptr<Cat>>& cat
+                     , std::vector<std::unique_ptr<StaticObject>>& staticObjects)
 {
     switch (c)
     {
     case '#':                                        // Size = 60 ;
         m_board.at(i).at(j) = std::make_unique<Wall>(sf::Vector2f(j * SIZE, i * SIZE));
+        staticObjects.push_back(std::make_unique<Wall>(sf::Vector2f(j * SIZE, i * SIZE)));
         break;
     case '%':
         mouse.setPosition(sf::Vector2f(j * SIZE, i * SIZE));
-        
         break;
     case '$':
         m_board.at(i).at(j) = std::make_unique<Gift>(sf::Vector2f(j * SIZE, i * SIZE));
+        staticObjects.push_back(std::make_unique<Gift>(sf::Vector2f(j * SIZE, i * SIZE)));
         break;
     case 'F':
         m_board.at(i).at(j) = std::make_unique<Key>(sf::Vector2f(j * SIZE, i * SIZE));
+        staticObjects.push_back(std::make_unique<Key>(sf::Vector2f(j * SIZE, i * SIZE)));
         break;
     case '^':
-        //m_board.at(i).at(j) = std::make_unique<Cat>(sf::Vector2f(j * SIZE, i * SIZE));// ?
         cat.push_back(std::make_unique<Cat>(sf::Vector2f(j * SIZE, i * SIZE)));
-        // {Cat,Cat,Cat}
         break;
     case '*':
         m_board.at(i).at(j) = std::make_unique<Cheese>(sf::Vector2f(j * SIZE, i * SIZE));
+        staticObjects.push_back(std::make_unique<Cheese>(sf::Vector2f(j * SIZE, i * SIZE)));
         break;
     case 'D':
         m_board.at(i).at(j) = std::make_unique<Door>(sf::Vector2f(j * SIZE, i * SIZE));
+        staticObjects.push_back(std::make_unique<Door>(sf::Vector2f(j * SIZE, i * SIZE)));
         break;
     default:
         break;

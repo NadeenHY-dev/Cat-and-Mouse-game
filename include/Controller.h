@@ -9,7 +9,7 @@
 #include "SoundManager.h"
 #include "Mouse.h"
 #include <string>
-# include <iostream>
+#include <iostream>
 
 
 class Controller
@@ -20,7 +20,13 @@ public:
 	void displayHelp(sf::RenderWindow& window);
 	void Run();
 
+
 private:
+	void handleCollesion(Object&);
+	std::vector<std::unique_ptr<MovingObject>> m_movingObjects;
+	std::vector<std::unique_ptr<StaticObject>> m_staticObjects;
+	void loadMoveableObj();
+
 	void resetGame();
 	bool setLevel();
 	void drawSidebar(sf::RenderWindow& window);
