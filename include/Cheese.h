@@ -11,6 +11,7 @@ public:
 	}
 	~Cheese() { ; }
 
+
 	virtual void collide(Object&);
 	virtual void collide(Mouse&);
 	virtual void collide(Cat&);
@@ -20,5 +21,5 @@ public:
 	virtual void collide(Door&);
 	virtual void collide(Key&);
 private:
-	
+	int m_cheeseCounter = 0;
 };

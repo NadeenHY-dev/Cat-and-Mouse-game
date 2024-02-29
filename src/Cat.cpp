@@ -1,4 +1,5 @@
 #include "Cat.h"
+#include"Mouse.h"
 
 sf::Vector2f Cat::getCatPosition()
 {
@@ -11,8 +12,9 @@ void Cat::collide(Object& obj)
 	obj.collide(*this);
 }
 
-void Cat::collide(Mouse&)
+void Cat::collide(Mouse& mouse)
 {
+    mouse.catCatchMouse();
 }
 
 void Cat::collide(Cat&)

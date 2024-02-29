@@ -1,12 +1,15 @@
 #include"Cheese.h"
+#include"Mouse.h"
 
 void Cheese::collide(Object& obj)
 {
 	obj.collide(*this);
 }
 
-void Cheese::collide(Mouse&)
+void Cheese::collide(Mouse& mouse)
 {
+	/*m_sprite.setPosition({ 1000,1000 });*/
+	m_cheeseCounter++;
 }
 
 void Cheese::collide(Cat&)

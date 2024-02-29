@@ -11,11 +11,7 @@ Icons::Icons()
 	m_texture[CHEESE].loadFromFile("cheese.png");
 	m_texture[KEY].loadFromFile("key.png");
 	m_texture[GIFT].loadFromFile("gift.png");
-	m_texture[ROAD].loadFromFile("road.png");
 
-	//for (int i = 0; i < NUM_OF_ICONS; i++) {
-	//	m_texture[i].loadFromFile(m_nameFiles[i]);
-	//}
 
 	for (int i = 0; i < NUM_OF_ICONS; i++) {
 		m_sprite[i].setTexture(m_texture[i]);
