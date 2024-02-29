@@ -11,7 +11,7 @@ public:
 		m_sprite = Icons::instance().getIcon(DOOR);
 		m_sprite.setPosition(v);
 	}
-	~Door() { ; }
+	//~Door() { ; }
 
     virtual void collide(Object&);
     virtual void collide(Mouse&);

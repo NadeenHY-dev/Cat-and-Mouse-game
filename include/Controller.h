@@ -23,6 +23,7 @@ public:
 private:
 	void resetGame();
 	bool setLevel();
+	void drawSidebar(sf::RenderWindow& window);
 	void dealWithMenu( bool&gameRunning,sf:: RenderWindow&window);
 
 	std::string m_level;
@@ -31,4 +32,7 @@ private:
 	Mouse m_mouse;
 	std::vector<std::unique_ptr<Cat>> m_cat;
 	bool gameRunning = false;
+
+	sf::Texture scoreBackgroundTexture; // using an image
+	sf::Sprite scoreBackground;
 };
