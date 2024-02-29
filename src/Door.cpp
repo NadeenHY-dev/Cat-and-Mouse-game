@@ -1,4 +1,5 @@
 #include"Door.h"
+#include"Cat.h"
 
 void Door::collide(Object& obj)
 {
@@ -9,8 +10,9 @@ void Door::collide(Mouse&)
 {
 }
 
-void Door::collide(Cat&)
+void Door::collide(Cat& cat)
 {
+	cat.SetDirection({ 0,0 });
 }
 
 void Door::collide(Cheese&)

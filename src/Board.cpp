@@ -10,17 +10,33 @@ Board::~Board()
 {
 }
 
+size_t Board::getRow()
+{
+    return m_maxRow;
+}
+
+size_t Board::getCol()
+{
+    return m_maxCol;
+}
+
+Object& Board::getObj(size_t i, size_t j)
+{
+    return *m_board.at(i).at(j);
+}
+
 
 void Board::readToFile(const std::string level_name, Mouse& mouse, std::vector<std::unique_ptr<Cat>>& cat
                       ,std::vector<std::unique_ptr<StaticObject>>& staticObjects)
 {
-    //std::string filename = "Level" + std::to_string(level) + ".txt";
     auto myFile = std::ifstream( level_name);
     if (!myFile.is_open()) {
         std::cerr << "The file cannot open \n";
         exit(EXIT_FAILURE);
     }
-    myFile >> m_maxRow >> m_maxCol;
+    float time;
+    myFile >> m_maxRow >> m_maxCol /*>> time*/;
+    //m_time = sf::seconds(time);
     m_board.resize(m_maxRow);
 
     char c;

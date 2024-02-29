@@ -3,8 +3,7 @@
 
 
 Controller::Controller() 
-    : m_mouse(sf::Vector2f(0,0)) ,
-    m_menu(800, 600 )/*, m_cat({sf::Vector2f(0,0), sf::Vector2f(0, 0), sf::Vector2f(0, 0)})*/
+    : m_mouse(sf::Vector2f(0,0)) , m_menu(800, 600 )
 {
 }
 
@@ -20,7 +19,6 @@ void Controller::Run()
     music.play();
 
     auto window = sf::RenderWindow(sf::VideoMode(800, 600), "mouse cat");
-    sf::Clock clock;
 
     while (!gameRunning)
         dealWithMenu(gameRunning, window);
@@ -46,7 +44,6 @@ void Controller::Run()
                     m_cat.at(i)->draw(window);
                 }
 
-
                 for (auto event = sf::Event{}; window.pollEvent(event); )
                 {
                     switch (event.type)
@@ -59,61 +56,66 @@ void Controller::Run()
                         break;
                     }
                 }
-
                 for (size_t i = 0; i < m_cat.size(); i++) //  set the direction of the cats 
                     m_cat.at(i)->SetDirection(m_mouse.getMousePosition());
 
-
-                const auto deltaTime = clock.restart();
-                sf::Vector2f tempMousepPos = m_mouse.getMousePosition();
-                m_mouse.move(deltaTime);
-                // Check if the new position of the mouse is within the board's boundaries
-                if (!m_board.notInRange(m_mouse.getMousePosition())) {
-                    // If not, prevent the mouse from moving
-                    m_mouse.setPosition(tempMousepPos);
-                }
-
-                for (size_t i = 0; i < m_cat.size(); i++) {
-                    sf::Vector2f tempCatPos = m_cat.at(i)->getCatPosition();
-                    m_cat.at(i)->move(deltaTime);
-                    if (!m_board.notInRange(m_cat.at(i)->getCatPosition())) {
-                        // If not, prevent the cat from moving
-                        m_cat.at(i)->setPosition(tempCatPos);
-                    }
-                }
+                move(); // move the cats and the mouse
+                handleCollesion();
                 
-                m_mouse.setdeltaTime(deltaTime);
-                // check collesions 
-                for (auto& unmoveable : m_staticObjects) { // mouse wall 
-                    if (m_mouse.collidesWith(*unmoveable)) { // thier checking the sprite !!
-                        m_mouse.collide(*unmoveable);
-                    }
-                }
+
+
                 window.display();
-            }
+             }
         }
     }
 }
 // i have to pushpach the moveable objects...
-void Controller::handleCollesion(Object& obj) // insert mouse or cat 
+void Controller::handleCollesion() // insert mouse or cat 
 {
     for (auto& unmoveable : m_staticObjects) {
-        if (obj.collidesWith(*unmoveable)) { // thier checking the sprite !!
-            obj.collide(*unmoveable);
+        if (m_mouse.collidesWith(*unmoveable)) {
+            m_mouse.collide(*unmoveable);
         }
     }
-    //for (auto& moveable : m_movingObjects) {
-    //    if (obj.collidesWith(*moveable)) {
-    //        obj.collide(*moveable);
-    //    }
-    //}
+    for (int i = 0; i < m_cat.size(); i++) {
+        for (auto& unmoveable : m_staticObjects) {
+            if (m_cat.at(i)->collidesWith(*unmoveable)) {
+                m_cat.at(i)->collide(*unmoveable);
+            }
+        }
+    }
+    for (int i = 0; i < m_cat.size(); i++) {
+        if (m_mouse.collidesWith(*m_cat.at(i)))
+            m_mouse.collide(*m_cat.at(i));
+    }
 }
 
-void Controller::loadMoveableObj() // ahmad 
+void Controller::loadMoveableObj() 
 {
     m_movingObjects.push_back(std::make_unique<Mouse>(m_mouse)); // index i = 0 ;
     for (int i = 0; i < m_cat.size(); i++) {
         m_movingObjects.push_back(std::make_unique<Cat>(*m_cat.at(i)));
+    }
+}
+
+void Controller::move()
+{
+    const auto deltaTime = m_clock.restart();
+    sf::Vector2f tempMousepPos = m_mouse.getMousePosition();
+    m_mouse.move(deltaTime);
+    // Check if the new position of the mouse is within the board's boundaries
+    if (!m_board.notInRange(m_mouse.getMousePosition())) {
+        // If not, prevent the mouse from moving
+        m_mouse.setPosition(tempMousepPos);
+    }
+
+    for (size_t i = 0; i < m_cat.size(); i++) {
+        sf::Vector2f tempCatPos = m_cat.at(i)->getCatPosition();
+        m_cat.at(i)->move(deltaTime);
+        if (!m_board.notInRange(m_cat.at(i)->getCatPosition())) {
+            // If not, prevent the cat from moving
+            m_cat.at(i)->setPosition(tempCatPos);
+        }
     }
 }
 

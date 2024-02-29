@@ -17,15 +17,16 @@ class Controller
 public:
 	Controller();
 	~Controller();
-	void displayHelp(sf::RenderWindow& window);
 	void Run();
 
 
 private:
-	void handleCollesion(Object&);
+	void displayHelp(sf::RenderWindow& window);
+	void handleCollesion();
 	std::vector<std::unique_ptr<MovingObject>> m_movingObjects;
 	std::vector<std::unique_ptr<StaticObject>> m_staticObjects;
 	void loadMoveableObj();
+	void move();
 
 	void resetGame();
 	bool setLevel();
@@ -37,4 +38,5 @@ private:
 	Mouse m_mouse;
 	std::vector<std::unique_ptr<Cat>> m_cat;
 	bool gameRunning = false;
+	sf::Clock m_clock;
 };

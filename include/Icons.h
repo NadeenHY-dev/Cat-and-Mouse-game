@@ -2,10 +2,10 @@
 
 #include <SFML/Graphics.hpp>
 
-const int NUM_OF_ICONS = 8;
+const int NUM_OF_ICONS = 7;
 enum tools
 {
-	MOUSE, CAT, CHEESE, DOOR, KEY, GIFT, WALL ,ROAD
+	MOUSE, CAT, CHEESE, DOOR, KEY, GIFT, WALL
 };
 
 class Icons  // singleton
