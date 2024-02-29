@@ -24,7 +24,7 @@ private:
 	void handleCollesion(Object&);
 	std::vector<std::unique_ptr<MovingObject>> m_movingObjects;
 	std::vector<std::unique_ptr<StaticObject>> m_staticObjects;
-
+	void loadMoveableObj();
 
 	void resetGame();
 	bool setLevel();

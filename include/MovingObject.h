@@ -24,8 +24,14 @@ public:
 		m_sprite.move(m_direction * speedPerSecond * deltaTime.asSeconds());
 	}
 
+	void setdeltaTime(sf::Time time) {
+		m_deltaTime = time;
+	}
+
+
 protected:
 	sf::Vector2f m_direction; // right -> (1,0) ; left->(-1,0) ;
 	sf::Vector2f m_firstPosition;
+	sf::Time m_deltaTime;
 };
 
