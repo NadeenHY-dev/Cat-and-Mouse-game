@@ -31,7 +31,7 @@ public:
 
 	void readToFile(const std::string level_name,Mouse& mouse, std::vector<std::unique_ptr<Cat>>& cat);
 	void printer(sf::RenderWindow& window);
-
+	bool notInRange(sf::Vector2f position) const;
 private:
 	void insertIcon(const char, size_t,size_t, Mouse& mouse, std::vector<std::unique_ptr<Cat>>& cat); // private
 

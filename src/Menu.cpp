@@ -1,12 +1,33 @@
 #include "Menu.h"
 
-Menu::Menu(float width, float height)
+Menu::Menu(float width, float height) 
 {
+
+    // Load the texture for the background photo
+    if (!backgroundTexture.loadFromFile("jungle.jpg")) {
+        std::cerr << "Failed to load background image\n";
+    }
+
+    // Set the texture for the background sprite
+    backgroundSprite.setTexture(backgroundTexture);
+
+    // Scale the background sprite to cover the entire window
+    float scaleX = width / backgroundSprite.getLocalBounds().width;
+    float scaleY = height / backgroundSprite.getLocalBounds().height;
+    backgroundSprite.setScale(scaleX, scaleY);
+
     if (!font.loadFromFile("arial.ttf")) {
         std::cerr << "faild loading";
 
     }
 
+     //Load the sound buffer from a file
+    //if (!clickSoundBuffer.loadFromFile("menuclick.ogg")) {
+    //    std::cerr << "Failed to load click sound\n";
+    //}
+
+    //// Set up the sound
+    //clickSound.setBuffer(clickSoundBuffer);
     std::string menuItems[] = { "Play", "Help", "Exit" };
     for (int i = 0; i < 3; ++i) {
         for (int i = 0; i < 3; ++i) {
@@ -19,11 +40,12 @@ Menu::Menu(float width, float height)
             menuTexts.push_back(text);
         }
     }
-
 }
 
 void Menu::draw(sf::RenderWindow& window)
 {
+    window.draw(backgroundSprite);
+
     for (auto& text : menuTexts) {
         window.draw(text);
     }
@@ -33,6 +55,9 @@ int Menu::getSelectedItem(const sf::Vector2f& mousePos)
 {
     for (size_t i = 0; i < menuTexts.size(); ++i) {
         if (menuTexts[i].getGlobalBounds().contains(mousePos)) {
+            // Play the click sound when a menu item is selected
+            soundManager.loadSound("click", "menuclick.ogg");
+            soundManager.playSound("click");
             return i;
         }
     }
