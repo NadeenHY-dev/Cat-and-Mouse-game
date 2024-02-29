@@ -30,6 +30,7 @@ private:
 
 	void resetGame();
 	bool setLevel();
+	void drawSidebar(sf::RenderWindow& window);
 	void dealWithMenu( bool&gameRunning,sf:: RenderWindow&window);
 
 	std::string m_level;
@@ -39,4 +40,9 @@ private:
 	std::vector<std::unique_ptr<Cat>> m_cat;
 	bool gameRunning = false;
 	sf::Clock m_clock;
+
+
+	sf::Texture scoreBackgroundTexture; // using an image
+	sf::Sprite scoreBackground;
+
 };

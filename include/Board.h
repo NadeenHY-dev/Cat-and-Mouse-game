@@ -39,9 +39,14 @@ private:
 	void insertIcon(const char, size_t,size_t, Mouse& mouse, std::vector<std::unique_ptr<Cat>>& cat
 					, std::vector<std::unique_ptr<StaticObject>>&); // private
 
+	void setBackGround();
 
 	std::vector<std::vector<std::unique_ptr<Object> > > m_board; // V ?
 	size_t m_maxRow;
 	size_t m_maxCol;
+
 	sf::Time m_time;
+
+	sf::Texture backgroundTexture; // Texture for the background image
+	sf::Sprite backgroundSprite; // Sprite using the texture
 };
