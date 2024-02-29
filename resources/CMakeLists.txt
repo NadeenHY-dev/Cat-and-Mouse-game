@@ -17,6 +17,9 @@ configure_file ("Levels.txt" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("level2.txt" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("Level3.txt" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("menuclick.ogg" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("scoreBack.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("boardBackGround.png" ${CMAKE_BINARY_DIR} COPYONLY)
+
 
 
 

@@ -4,6 +4,7 @@
 
 Board::Board() : m_maxCol(0), m_maxRow(0)
 {
+    setBackGround();
 }
 
 Board::~Board()
@@ -39,6 +40,9 @@ void Board::readToFile(const std::string level_name, Mouse& mouse, std::vector<s
 
 void Board::printer(sf::RenderWindow& window)
 {
+    // Draw the background first
+    window.draw(backgroundSprite);
+
     for (size_t i = 0; i < m_maxRow; i++) {
         for (size_t j = 0; j < m_maxCol; j++) {
             if (m_board.at(i).at(j) != nullptr)
@@ -88,6 +92,30 @@ void Board::insertIcon(const char c,size_t i ,size_t j, Mouse& mouse, std::vecto
         break;
     default:
         break;
+    }
+}
+
+void Board::setBackGround()
+{
+    if (!backgroundTexture.loadFromFile("boardBackGround.png")) {
+        std::cerr << "Failed to load background image\n";
+    }
+    else {
+        backgroundSprite.setTexture(backgroundTexture);
+
+        // Assuming you have the window size or desired background size
+        float desiredWidth = 800; // Width of the window or board
+        float desiredHeight = 600; // Height of the window or board, adjust this to how far down you want the image to go
+
+        // Get the actual size of the texture
+        sf::Vector2u textureSize = backgroundTexture.getSize();
+
+        // Calculate the scale factors
+        float scaleX = desiredWidth / static_cast<float>(textureSize.x);
+        float scaleY = desiredHeight / static_cast<float>(textureSize.y);
+
+        // Set the scale of the sprite
+        backgroundSprite.setScale(scaleX, scaleY);
     }
 }
 

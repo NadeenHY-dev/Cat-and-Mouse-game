@@ -6,6 +6,7 @@ Controller::Controller()
     : m_mouse(sf::Vector2f(0,0)) ,
     m_menu(800, 600 )/*, m_cat({sf::Vector2f(0,0), sf::Vector2f(0, 0), sf::Vector2f(0, 0)})*/
 {
+
 }
 
 Controller::~Controller()
@@ -41,6 +42,7 @@ void Controller::Run()
                 //print
                 window.clear();
                 m_board.printer(window);
+
                 m_mouse.draw(window);
                 for (size_t i = 0; i < m_cat.size(); i++) {
                     m_cat.at(i)->draw(window);
@@ -81,6 +83,9 @@ void Controller::Run()
                         m_cat.at(i)->setPosition(tempCatPos);
                     }
                 }
+
+                drawSidebar(window);
+
                 
                 m_mouse.setdeltaTime(deltaTime);
                 // check collesions 
@@ -196,7 +201,7 @@ void Controller::displayHelp(sf::RenderWindow& window) {
     helpText.setFont(font); 
     helpText.setCharacterSize(24);
     helpText.setFillColor(sf::Color::White);
-    helpText.setPosition(30, 70); 
+    helpText.setPosition(30, 30); 
     helpText.setString("Help Information:\n\n"
         "- Your goal is to help the mouse navigate through the maze and collect \n all the cheese.\n\n"
         "- Be cautious! Cats are lurking around, trying to catch the mouse. \n If caught, you'll lose a life.\n\n"
@@ -205,7 +210,7 @@ void Controller::displayHelp(sf::RenderWindow& window) {
     "- Use the arrow keys on your keyboard to move the mouse in the \n desired direction.\n\n"
     "- Make use of gifts to enhance your chances of success.\n\n"
     "- Remember, each level presents a new challenge, so stay \n focused and plan your moves wisely.\n\n"
-    "- Press any key on the board to return to the main menu.");
+    "- Press any key on the keyboard to return to the main menu.");
 
     window.clear(); 
     window.draw(helpText);
@@ -222,3 +227,42 @@ void Controller::displayHelp(sf::RenderWindow& window) {
     }
 }
 
+void Controller::drawSidebar(sf::RenderWindow& window) 
+{
+    //background for the score menu
+    if (!scoreBackgroundTexture.loadFromFile("scoreBack.png")) {
+        std::cerr << "Failed to load background texture\n";
+    }
+    scoreBackground.setTexture(scoreBackgroundTexture);
+    scoreBackground.setPosition(600, 0); // Adjust as necessary
+    window.draw(scoreBackground);
+
+    // Load a font
+    sf::Font font;
+    if (!font.loadFromFile("arial.ttf")) {
+        std::cerr << "Failed to load font\n";
+        return;
+    }
+
+    // Initialize text objects for displaying information
+    sf::Text scoreText("Score:1 " /*+ std::to_string(score)*/, font, 36); //*******we need to change*************************************
+    scoreText.setFillColor(sf::Color::White);
+    scoreText.setPosition(650, 30); // Adjust as needed
+
+    sf::Text cheeseText("Cheese:25 " /*+ std::to_string(cheeseCount)*/, font, 36); ////*******we need to change*********************************
+    cheeseText.setFillColor(sf::Color::White);
+    cheeseText.setPosition(650, 100); // Adjust as needed
+
+    sf::Text LivesText("lives:3 " /*+ std::to_string(cheeseCount)*/, font, 36); ////*******we need to change*********************************
+    LivesText.setFillColor(sf::Color::White);
+    LivesText.setPosition(650, 170); // Adjust as needed
+
+    // You can add more text objects for other game state variables
+
+    // Draw the text objects
+    window.draw(scoreText);
+    window.draw(cheeseText);
+    window.draw(LivesText);
+
+    // Draw other text objects
+}

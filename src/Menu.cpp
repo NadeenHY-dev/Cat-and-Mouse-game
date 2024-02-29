@@ -21,13 +21,7 @@ Menu::Menu(float width, float height)
 
     }
 
-     //Load the sound buffer from a file
-    //if (!clickSoundBuffer.loadFromFile("menuclick.ogg")) {
-    //    std::cerr << "Failed to load click sound\n";
-    //}
 
-    //// Set up the sound
-    //clickSound.setBuffer(clickSoundBuffer);
     std::string menuItems[] = { "Play", "Help", "Exit" };
     for (int i = 0; i < 3; ++i) {
         for (int i = 0; i < 3; ++i) {
