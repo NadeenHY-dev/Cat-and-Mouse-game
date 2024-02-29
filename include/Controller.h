@@ -6,6 +6,7 @@
 #include <SFML/Graphics.hpp>
 #include"Consts.h"
 #include "Cat.h"
+#include "SoundManager.h"
 #include "Mouse.h"
 #include <string>
 # include <iostream>

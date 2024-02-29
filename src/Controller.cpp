@@ -3,9 +3,9 @@
 
 
 Controller::Controller() 
-    : m_mouse(sf::Vector2f(0,0)) ,m_menu(800, 600)/*, m_cat({sf::Vector2f(0,0), sf::Vector2f(0, 0), sf::Vector2f(0, 0)})*/
+    : m_mouse(sf::Vector2f(0,0)) ,
+    m_menu(800, 600 )/*, m_cat({sf::Vector2f(0,0), sf::Vector2f(0, 0), sf::Vector2f(0, 0)})*/
 {
-
 }
 
 Controller::~Controller()
@@ -14,12 +14,12 @@ Controller::~Controller()
 
 void Controller::Run()
 {
-    //sf::Music music;
-    //if (!music.openFromFile("music.ogg"))
-    //    std::cout << "no music"; // error
-    //music.play();
+    sf::Music music;
+    if (!music.openFromFile("music.ogg"))
+        std::cout << "no music"; // error
+    music.play();
 
-    auto window = sf::RenderWindow(sf::VideoMode(800, 800), "mouse cat");
+    auto window = sf::RenderWindow(sf::VideoMode(800, 600), "mouse cat");
     sf::Clock clock;
 
     while (!gameRunning)
@@ -191,3 +191,4 @@ void Controller::displayHelp(sf::RenderWindow& window) {
         }
     }
 }
+

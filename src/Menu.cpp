@@ -1,6 +1,6 @@
 #include "Menu.h"
 
-Menu::Menu(float width, float height)
+Menu::Menu(float width, float height) 
 {
 
     // Load the texture for the background photo
@@ -21,6 +21,14 @@ Menu::Menu(float width, float height)
 
     }
 
+     //Load the sound buffer from a file
+    //if (!clickSoundBuffer.loadFromFile("menuclick.ogg")) {
+    //    std::cerr << "Failed to load click sound\n";
+    //}
+
+    //// Set up the sound
+    //clickSound.setBuffer(clickSoundBuffer);
+
     std::string menuItems[] = { "Play", "Help", "Exit" };
     for (int i = 0; i < 3; ++i) {
         for (int i = 0; i < 3; ++i) {
@@ -33,7 +41,6 @@ Menu::Menu(float width, float height)
             menuTexts.push_back(text);
         }
     }
-
 }
 
 void Menu::draw(sf::RenderWindow& window)
@@ -49,6 +56,8 @@ int Menu::getSelectedItem(const sf::Vector2f& mousePos)
 {
     for (size_t i = 0; i < menuTexts.size(); ++i) {
         if (menuTexts[i].getGlobalBounds().contains(mousePos)) {
+            // Play the click sound when a menu item is selected
+            //clickSound.play();
             return i;
         }
     }
